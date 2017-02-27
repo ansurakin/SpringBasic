@@ -11,7 +11,7 @@ import ru.alexander.model.Leg;
 import ru.alexander.model.Robot;
 
 @Data
-public class ModelT1000 implements Robot, InitializingBean, DisposableBean, BeanPostProcessor {
+public class ModelT1000 implements Robot, InitializingBean, DisposableBean {
 
     private Hand hand;
 
@@ -76,16 +76,6 @@ public class ModelT1000 implements Robot, InitializingBean, DisposableBean, Bean
 
     public void afterPropertiesSet() throws Exception {
         System.out.println("afterPropertiesSet");
-    }
-
-    public Object postProcessBeforeInitialization(Object o, String string) throws BeansException {
-        System.out.println("postProcessBeforeInitialization");
-        return o;
-    }
-
-    public Object postProcessAfterInitialization(Object o, String string) throws BeansException {
-        System.out.println("postProcessAfterInitialization");
-        return o;
     }
 
 }

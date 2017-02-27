@@ -7,6 +7,8 @@
        default-lazy-init="true"
 >
     
+    <bean class="ru.alexander.common.MyBeanPostProcessor" />
+    
 <!--    <bean id = "t1000" class="ru.alexander.model.impl.ModelT1000">        
         <constructor-arg ref = "sonyHand" />
         <constructor-arg ref = "toshibaLeg" />
