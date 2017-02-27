@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
 
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
-">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd"
+       default-lazy-init="true"
+>
     
-    <bean id = "t1000" class="ru.alexander.model.impl.ModelT1000">        
+<!--    <bean id = "t1000" class="ru.alexander.model.impl.ModelT1000">        
         <constructor-arg ref = "sonyHand" />
         <constructor-arg ref = "toshibaLeg" />
         <constructor-arg ref = "toshibaHead" />       
@@ -13,6 +15,29 @@
         <property name="hand" ref="toshibaHand" />
         <property name="leg" ref="toshibaLeg" />
         <property name="head" ref="toshibaHead" />         
+    </bean>-->
+    
+    <bean id = "t1000" class="ru.alexander.model.impl.ModelT1000" scope="prototype"
+          init-method="init"
+          destroy-method="destroy"
+    >
+        
+        <constructor-arg name="color" value="red"  index="0" type="String" />
+        <constructor-arg name="year" value="2222" index="1" type="int" />
+        <constructor-arg name="soundEnable" value="true" index="2" type="boolean" />         
+        
+        <property name="hand" ref="toshibaHand" />
+        <property name="leg" ref="toshibaLeg" />
+        <property name="head" ref="toshibaHead" />
+        
+    </bean>
+    
+    <bean id = "t1000Empty" class="ru.alexander.model.impl.ModelT1000" >  
+        
+        <constructor-arg name="hand" ref="toshibaHand" />
+        <constructor-arg name="leg" ref="toshibaLeg" />
+        <constructor-arg name="head" ref="toshibaHead" />     
+        
     </bean>
     
     <bean id = "sonyHand" class="ru.alexander.model.impl.SonyHand">
@@ -24,7 +49,7 @@
     <bean id = "sonyLeg" class="ru.alexander.model.impl.SonyLeg">
     </bean>
     
-    <bean id = "toshibaHand" class="ru.alexander.model.impl.ToshibaHand">
+    <bean id = "toshibaHand" class="ru.alexander.model.impl.ToshibaHand" scope="prototype">
     </bean>
     
     <bean id = "toshibaHead" class="ru.alexander.model.impl.ToshibaHead">
